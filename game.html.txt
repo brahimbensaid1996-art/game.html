@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu - Devine le nombre</title>
+
+    <!-- STYLE CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .game-box {
+            background-color: white;
+            width: 360px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #aaa;
+        }
+
+        input {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="game-box">
+    <h2>🎮 Devine le nombre</h2>
+    <p>J’ai choisi un nombre entre 1 et 100</p>
+
+    <input type="number" id="guess" placeholder="Entrez votre nombre">
+    <br>
+    <button onclick="verifierNombre()">Vérifier</button>
+
+    <p id="message"></p>
+    <p id="tentatives"></p>
+</div>
+
+<!-- SCRIPT JAVASCRIPT -->
+<script>
+    let nombreSecret = Math.floor(Math.random() * 100) + 1;
+    let essais = 0;
+
+    function verifierNombre() {
+        let valeur = document.getElementById("guess").value;
+        essais++;
+
+        if (valeur < nombreSecret) {
+            document.getElementById("message").innerHTML = "📉 Le nombre est trop petit";
+        } else if (valeur > nombreSecret) {
+            document.getElementById("message").innerHTML = "📈 Le nombre est trop grand";
+        } else {
+            document.getElementById("message").innerHTML = "🎉 Bravo ! Vous avez trouvé le bon nombre.";
+            document.getElementById("tentatives").innerHTML = "Nombre de tentatives : " + essais;
+        }
+    }
+</script>
+
+</body>
+</html>
